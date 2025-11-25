@@ -1,3 +1,112 @@
+# GPA Calculator with SQLite Database
+
+A simple JavaFX application to calculate GPA with SQLite database integration for storing and retrieving calculation history.
+
+## Project Structure
+
+```
+GPAcalc/
+├── pom.xml
+├── src/
+│   └── main/
+│       ├── java/
+│       │   ├── module-info.java
+│       │   └── com/example/gpacalc/
+│       │       ├── GPAApplication.java
+│       │       ├── Launcher.java
+│       │       ├── Course.java
+│       │       ├── DatabaseManager.java
+│       │       ├── GPAController.java
+│       │       ├── ResultController.java
+│       │       └── HistoryController.java
+│       └── resources/
+│           └── com/example/gpacalc/
+│               ├── scene1.fxml
+│               ├── scene2.fxml
+│               ├── scene3.fxml
+│               └── history.fxml
+└── gpacalc.db (created automatically)
+```
+
+## Features
+
+- Add courses with name, code, credits, teachers, and grade
+- Calculate GPA based on 4.0 scale
+- Store all calculations in SQLite database
+- View history of all saved GPA calculations
+- Simple, no-design interface
+
+## Database Schema
+
+### Sessions Table
+- session_id (PRIMARY KEY, AUTO INCREMENT)
+- total_credits (INTEGER)
+- total_points (REAL)
+- gpa (REAL)
+- created_at (TIMESTAMP)
+
+### Courses Table
+- course_id (PRIMARY KEY, AUTO INCREMENT)
+- session_id (FOREIGN KEY)
+- course_name (TEXT)
+- course_code (TEXT)
+- course_credit (INTEGER)
+- teacher1 (TEXT)
+- teacher2 (TEXT)
+- grade (TEXT)
+- grade_point (REAL)
+
+## SQL Operations Used
+
+1. **CREATE TABLE** - Creates sessions and courses tables
+2. **INSERT** - Saves GPA sessions and course data
+3. **SELECT** - Retrieves saved history
+4. **JOIN** (via FOREIGN KEY) - Links courses to sessions
+
+## How to Run
+
+1. Make sure you have Java 25 and Maven installed
+2. Navigate to project directory
+3. Run: `mvn clean javafx:run`
+
+Or run via Launcher:
+```bash
+mvn clean compile
+mvn exec:java -Dexec.mainClass="com.example.gpacalc.Launcher"
+```
+
+## Grade Scale
+
+- A+ = 4.0
+- A = 3.75
+- A- = 3.5
+- B+ = 3.25
+- B = 3.0
+- B- = 2.75
+- C+ = 2.5
+- C = 2.25
+- C- = 2.0
+- D = 1.0
+- F = 0.0
+
+## Requirements
+
+- Java 25
+- JavaFX 21.0.6
+- SQLite JDBC Driver 3.44.1.0
+- Maven
+
+## Database File
+
+The SQLite database file `gpacalc.db` will be created automatically in the project root directory when you first run the application.
+
+
+
+
+
+
+
+
 ---
 
 🧭 Dijkstra’s Algorithm
